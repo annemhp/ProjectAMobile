@@ -1,0 +1,111 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.development.mymla.MainActivity"
+    android:orientation="vertical"
+    android:background="#2b0043">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:id="@+id/imageView5"
+            android:src="@drawable/topimg"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/imageView4"
+            android:src="@drawable/name"
+            android:layout_weight="1.66"
+            android:background="#440e62" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1" >
+
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/imageView9"
+                    android:layout_weight="1"
+                    android:src="@drawable/report"
+                    android:padding="20dp"
+                    android:clickable="true"
+                    android:layout_marginLeft="5dp" />
+
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/imageView10"
+                    android:layout_weight="1"
+                    android:src="@drawable/status"
+                    android:padding="20dp"
+                    android:clickable="true" />
+
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/imageView11"
+                    android:layout_weight="1"
+                    android:src="@drawable/contacts"
+                    android:padding="20dp"
+                    android:clickable="true" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/imageView6"
+                    android:layout_weight="1"
+                    android:src="@drawable/news"
+                    android:padding="20dp"
+                    android:clickable="true"
+                    android:layout_marginLeft="5dp" />
+
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/imageView7"
+                    android:layout_weight="1"
+                    android:padding="0dp"
+                    android:minWidth="50dp" />
+
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/imageView8"
+                    android:layout_weight="1"
+                    android:src="@drawable/eme"
+                    android:paddingLeft="30dp"
+                    android:paddingRight="0dp"
+                    android:paddingBottom="15dp"
+                    android:baselineAlignBottom="false"
+                    android:clickable="true"
+                    android:cropToPadding="false"
+                    android:paddingTop="15dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
