@@ -1,6 +1,9 @@
 package com.example.development.mymla;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,6 +14,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
+import RestService.MyMLAServiceApiClient;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -19,10 +24,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        String a ="hello";
+        String b = "&quot;World&quot;";
+        String c = "pore";
+        String d = MyMLAServiceApiClient.BASE_URL;
         ImageView img1 = (ImageView) findViewById(R.id.imageView9);
         img1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                if(isNetworkAvailable()) {
+                    Intent i = new Intent(getApplicationContext(), ReportsActivity.class);
+                    startActivity(i);
+                }
+                else {
+                    Snackbar.make(v, "No Internet connetion.Please connect to Internet", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
                 // your code here
             }
         });
@@ -30,9 +46,14 @@ public class MainActivity extends AppCompatActivity {
         ImageView img2 = (ImageView) findViewById(R.id.imageView10);
         img2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
-                Intent i = new Intent(getApplicationContext(),StatusMasterActivity.class);
-                startActivity(i);
+                if(isNetworkAvailable()) {
+                    Intent i = new Intent(getApplicationContext(), StatusMasterActivity.class);
+                    startActivity(i);
+                }
+                else {
+                    Snackbar.make(v, "No Internet connetion.Please connect to Internet", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
                 // your code here
             }
         });
@@ -40,6 +61,15 @@ public class MainActivity extends AppCompatActivity {
         ImageView img3 = (ImageView) findViewById(R.id.imageView11);
         img3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
+                if(isNetworkAvailable()) {
+                    Intent i = new Intent(getApplicationContext(), ContactsActivity.class);
+                    startActivity(i);
+                }
+                else {
+                    Snackbar.make(v, "No Internet connetion.Please connect to Internet", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
                 // your code here
             }
         });
@@ -47,7 +77,14 @@ public class MainActivity extends AppCompatActivity {
         ImageView img4 = (ImageView) findViewById(R.id.imageView6);
         img4.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // your code here
+                if(isNetworkAvailable()) {
+                    Intent i = new Intent(getApplicationContext(), NewsActivity.class);
+                    startActivity(i);
+                }
+                else {
+                    Snackbar.make(v, "No Internet connetion.Please connect to Internet", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
             }
         });
 
@@ -82,5 +119,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 }

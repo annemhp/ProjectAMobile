@@ -3,6 +3,8 @@
     package="com.example.development.mymla">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -26,7 +28,15 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light" />
         <activity android:name=".StatusDetailActivity" />
-        <activity android:name=".SignInActivity"></activity>
+        <activity
+            android:name=".ReportsActivity"
+            android:label="@string/title_activity_reports"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name=".ContactsActivity"
+            android:label="@string/title_activity_contacts"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".NewsActivity"></activity>
     </application>
 
 </manifest>

@@ -107,7 +107,7 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.StatusView
             if((status.get(getAdapterPosition()).updates) != null) {
                 ArrayList<StatusDetail> statusDetail = new ArrayList<StatusDetail>(status.get(getAdapterPosition()).getUpdates().values());
                 Intent i = new Intent(context, StatusDetailActivity.class);
-                i.putExtra("ProductId", statusDetail);
+                i.putParcelableArrayListExtra("ProductId", statusDetail);
                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(i);
             }

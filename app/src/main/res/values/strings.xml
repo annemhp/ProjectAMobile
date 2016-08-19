@@ -1,4 +1,22 @@
 <resources>
     <string name="app_name">MyMLA</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_report">ReportActivity</string>
+    <!-- "Report Issue Page" Strings -->
+    <string name="etName">Name</string>
+    <string name="etMobile">Mobile</string>
+    <string name="etPlace">Place</string>
+    <string name="etSubject">Subject</string>
+    <string name="etDepartment">Department</string>
+    <string name="etProblem">Problem</string>
+    <string name="btnAttachImage">Attach Image</string>
+    <string name="btnSubmitIssue">Submit Issue</string>
+
+    <!-- "department_list_view" Strings -->
+    <string name="lvDepartment">Select Department</string> <!--title for the department dialog box-->
+
+    <!-- "taluka_list_view" Strings -->
+    <string name="lvTaluka">Select Taluka</string>
+    <string name="title_activity_reports">ReportsActivity</string>
+    <string name="title_activity_contacts">ContactsActivity</string> <!--title for the title dialog box-->
 </resources>
