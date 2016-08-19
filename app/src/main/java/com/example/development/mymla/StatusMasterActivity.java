@@ -9,6 +9,9 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -27,6 +30,11 @@ import retrofit2.Response;
 public class StatusMasterActivity extends AppCompatActivity {
 
     public static final String TAG = MainActivity.class.getSimpleName();
+    private FirebaseAuth mFirebaseAuth;
+    private FirebaseUser mFirebaseUser;
+    private String mUsernameId;
+    private String mUsername;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +48,16 @@ public class StatusMasterActivity extends AppCompatActivity {
         IMyMLAService apiService =
                 MyMLAServiceApiClient.getClient().create(IMyMLAService.class);
 
-        Call<LinkedHashMap<String,Status>> call = apiService.getAllStatus();
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
+        mUsernameId = mFirebaseUser.getEmail();
+        mUsernameId = "\""+mUsernameId+"\"";
+        Call<LinkedHashMap<String,Status>> call = apiService.getAllStatus(mUsernameId);
         call.enqueue(new Callback<LinkedHashMap<String,Status>>() {
             @Override
             public void onResponse(Call<LinkedHashMap<String,Status>> call, Response<LinkedHashMap<String,Status>> response) {
                 int statusCode = response.code();
-                LinkedHashMap<String,Status> status = response.body();
+                LinkedHashMap<String,Status> status = response.body()!=null ?response.body() : new LinkedHashMap<String, Status>() ;
                 List<Status> statusvalues = new ArrayList<Status>(status.values());
                 List<String> keys = new ArrayList<String>(status.keySet());
                 for(int i=0;i<statusvalues.size();i++)

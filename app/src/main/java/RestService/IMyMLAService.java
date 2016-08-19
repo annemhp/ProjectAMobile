@@ -12,6 +12,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  * Created by Development on 8/13/2016.
@@ -19,8 +20,9 @@ import retrofit2.http.Path;
 
 public interface IMyMLAService {
 
-    @GET("issues.json?orderBy=\"userId\"&equalTo=\"seshnitw\"")
-    Call<LinkedHashMap<String,Status>> getAllStatus();
+    @GET("issues.json?orderBy=\"userId\"")
+    Call<LinkedHashMap<String,Status>> getAllStatus(@Query("equalTo") String id);
+
 
    @POST("issues.json?")
    Call<ReportProblem> createReport(@Body ReportProblem newProductDetails);

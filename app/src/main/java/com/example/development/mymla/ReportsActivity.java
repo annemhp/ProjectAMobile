@@ -27,6 +27,15 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.MutableData;
+import com.google.firebase.database.Transaction;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -67,10 +76,15 @@ public class ReportsActivity extends AppCompatActivity {
     private String imageDetails = ""; // to get the bitmap image name from the methods and pass it to the object
 
 
+    // Firebase instance variables
+    private FirebaseAuth mFirebaseAuth;
+    private FirebaseUser mFirebaseUser;
+    private String mUsernameId;
+    private String mUsername;
     //private FirebaseApp app = FirebaseApp.getInstance();
     //private FirebaseDatabase database = FirebaseDatabase.getInstance();
     //private DatabaseReference databaseRef;
-
+    private DatabaseReference mFirebaseDatabaseReference;
 
 
     @Override
@@ -95,9 +109,15 @@ public class ReportsActivity extends AppCompatActivity {
         //FirebaseDatabase database = FirebaseDatabase.getInstance(app);
         //FirebaseAuth auth = FirebaseAuth.getInstance(app);
         //Firebase storage = FirebaseStorage.getInstance(app);
-        //DatabaseReference databaseRef = database.getReference("issues");
+        //DatabaseReference mFirebaseDatabaseReference = database.getReference("sequence_num");
 
 
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
+        mUsernameId = mFirebaseUser.getEmail();
+        mUsername = mFirebaseUser.getDisplayName();
+
+        editTextName.setText(mUsername);
         /*final ArrayList<String> tal = new ArrayList<String>();
         tal.add("AmberPet");
         tal.add("Golconda");
@@ -137,11 +157,9 @@ public class ReportsActivity extends AppCompatActivity {
         });*/
 
         final ArrayList<String> dept = new ArrayList<String>();
-        dept.add("Electricity");
-        dept.add("Water");
-        dept.add("Municipality");
-        dept.add("Fire");
-        dept.add("Emergency");
+        dept.addAll(Departments.departmants);
+
+
 
         editTextDepartment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -215,9 +233,13 @@ public class ReportsActivity extends AppCompatActivity {
                     return;
                 } else {
 
-                    ReportProblem newIssue = new ReportProblem("User1",name,mobile,place,department,subject,problem,today,status);
+
+
+                    final ReportProblem newIssue = new ReportProblem(mUsernameId,name,mobile,place,department,subject,problem,today,status);
                     IMyMLAService apiService =
                             MyMLAServiceApiClient.getClient().create(IMyMLAService.class);
+
+
 
                     Call<ReportProblem> call = apiService.createReport(newIssue);
                     call.enqueue(new Callback<ReportProblem>() {
