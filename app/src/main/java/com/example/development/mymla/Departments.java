@@ -9,7 +9,8 @@ import java.util.List;
  */
 public class Departments {
 
-    public static final String [] values = {"Electricity","Police","Transportation","Irrigation"};
+    public static final String [] values = {"Education","R&B","Irrigation" ,"Health", "Revenue", "Municipality" ,
+            "Panchayat Raj","Govt Schemes", "Others"};
     public static final List<String> departmants = Arrays.asList(values);
 
 

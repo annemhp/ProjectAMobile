@@ -52,6 +52,11 @@ public class StatusMasterActivity extends AppCompatActivity {
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
         mUsernameId = mFirebaseUser.getEmail();
         mUsernameId = "\""+mUsernameId+"\"";
+
+
+
+
+
         Call<LinkedHashMap<String,Status>> call = apiService.getAllStatus(mUsernameId);
         call.enqueue(new Callback<LinkedHashMap<String,Status>>() {
             @Override
@@ -60,10 +65,10 @@ public class StatusMasterActivity extends AppCompatActivity {
                 LinkedHashMap<String,Status> status = response.body()!=null ?response.body() : new LinkedHashMap<String, Status>() ;
                 List<Status> statusvalues = new ArrayList<Status>(status.values());
                 List<String> keys = new ArrayList<String>(status.keySet());
-                for(int i=0;i<statusvalues.size();i++)
-                {
-                    statusvalues.get(i).complaintNo = keys.get(i);
-                }
+//                for(int i=0;i<statusvalues.size();i++)
+//                {
+//                    statusvalues.get(i).complaintNo = statusvalues.get(i).getComplaintNo();
+//                }
                 recyclerView.setAdapter(new StatusAdapter(statusvalues, R.layout.list_item, getApplicationContext()));
             }
 

@@ -10,6 +10,16 @@ import java.util.Date;
 public class ReportProblem {
 
 
+    public Long getComplaintNo() {
+        return complaintNo;
+    }
+
+    public void setComplaintNo(Long complaintNo) {
+        this.complaintNo = complaintNo;
+    }
+
+    @SerializedName("complaintNo")
+    private Long complaintNo;
     @SerializedName("userId")
     private String userId;
     @SerializedName("name")

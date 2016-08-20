@@ -10,9 +10,10 @@
     tools:context="com.example.development.mymla.ContactsActivity"
     tools:showIn="@layout/activity_contacts">
 
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/contactsinformation"/>
+        android:src="@drawable/bio_screen"/>
 
 </android.support.constraint.ConstraintLayout>

@@ -68,7 +68,7 @@ public class ReportsActivity extends AppCompatActivity {
 
     private ListView listViewDepartment;
     //private ListView listViewTaluka;
-    int a=0;
+    int a = 0;
 
     private int REQUEST_CAMERA = 0, SELECT_FILE = 1;
     private String userChoosenTask;
@@ -118,6 +118,8 @@ public class ReportsActivity extends AppCompatActivity {
         mUsername = mFirebaseUser.getDisplayName();
 
         editTextName.setText(mUsername);
+
+        mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
         /*final ArrayList<String> tal = new ArrayList<String>();
         tal.add("AmberPet");
         tal.add("Golconda");
@@ -158,7 +160,6 @@ public class ReportsActivity extends AppCompatActivity {
 
         final ArrayList<String> dept = new ArrayList<String>();
         dept.addAll(Departments.departmants);
-
 
 
         editTextDepartment.setOnClickListener(new View.OnClickListener() {
@@ -203,7 +204,7 @@ public class ReportsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
+                Log.i("Transaction", "Fishing ");
                 //Getting values to store
                 String name = editTextName.getText().toString();
                 /*if (name.length() == 0)
@@ -234,56 +235,102 @@ public class ReportsActivity extends AppCompatActivity {
                 } else {
 
 
-
-                    final ReportProblem newIssue = new ReportProblem(mUsernameId,name,mobile,place,department,subject,problem,today,status);
-                    IMyMLAService apiService =
-                            MyMLAServiceApiClient.getClient().create(IMyMLAService.class);
+                    final ReportProblem newIssue = new ReportProblem(mUsernameId, name, mobile, place, department, subject, problem, today, status);
 
 
+                    new AlertDialog.Builder(v.getContext())
+                            .setTitle("Report Status")
+                            .setMessage("Your Issue has been submitted!!")
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // continue with delete
+                                    editTextName.setText("");
+                                    editTextMobile.setText("");
+                                    editTextSubject.setText("");
+                                    editTextProblem.setText("");
+                                    editTextPlace.setText("");
+                                    //imageName.setText("");
+                                    // imageName.setVisibility(View.GONE);
+                                }
+                            })
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
 
-                    Call<ReportProblem> call = apiService.createReport(newIssue);
-                    call.enqueue(new Callback<ReportProblem>() {
+
+                    DatabaseReference postRef = mFirebaseDatabaseReference.child("sequence_num");
+
+                    //postRef.setValue(7);
+
+                    final DatabaseReference issuesRef = mFirebaseDatabaseReference.child("issues");
+
+
+                    postRef.runTransaction(new Transaction.Handler() {
+
+
                         @Override
-                        public void onResponse(Call<ReportProblem> call, Response<ReportProblem> response) {
-                            int statusCode = response.code();
-                            a=statusCode;
-                            ReportProblem issue = response.body();
+                        public Transaction.Result doTransaction(MutableData mutableData) {
+                            Long curr = mutableData.getValue() != null ? (Long) mutableData.getValue() : 0;
+                            curr = curr + 1;
+                            mutableData.setValue(curr);
+                            return Transaction.success(mutableData);
+
                         }
 
+
                         @Override
-                        public void onFailure(Call<ReportProblem> call, Throwable t) {
-                            // Log error here since request failed
-                            Log.e("New Issue Report", t.toString());
+                        public void onComplete(DatabaseError databaseError, boolean b,
+                                               DataSnapshot dataSnapshot) {
+
+                            // Transaction completed
+                            // Log.d(TAG, "postTransaction:onComplete:" + databaseError);
+                            //Log.i("Transaction", dataSnapshot.child("sequence_num").getValue().toString());
+
+                            Log.i("Transaction", dataSnapshot.getValue().toString());
+
+                            newIssue.setComplaintNo((Long) dataSnapshot.getValue());
+
+                            submitReport(newIssue);
                         }
                     });
 
 
-                    if(a==200)
-                    {
-                        new AlertDialog.Builder(v.getContext())
-                                .setTitle("Report Status")
-                                .setMessage("Your Issue has been submitted!!")
-                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        // continue with delete
-                                        editTextName.setText("");
-                                        editTextMobile.setText("");
-                                        editTextSubject.setText("");
-                                        editTextProblem.setText("");
-                                        editTextPlace.setText("");
-                                        //imageName.setText("");
-                                        // imageName.setVisibility(View.GONE);
-                                    }
-                                })
-                                .setIcon(android.R.drawable.ic_dialog_alert)
-                                .show();
+                    // Log.i("New Issue ", newIssue.getComplaintNumber().toString());
 
-                    }
                 }
             }
         });
     }
 
+
+    private void submitReport(ReportProblem newIssue) {
+        IMyMLAService apiService =
+                MyMLAServiceApiClient.getClient().create(IMyMLAService.class);
+
+        Call<ReportProblem> call = apiService.createReport(newIssue);
+        call.enqueue(new Callback<ReportProblem>()
+
+                     {
+                         @Override
+                         public void onResponse(Call<ReportProblem> call, Response<ReportProblem> response) {
+                             a = response.code();
+
+                             ReportProblem issue = response.body();
+                         }
+
+                         @Override
+                         public void onFailure(Call<ReportProblem> call, Throwable t) {
+                             // Log error here since request failed
+                             Log.e("New Issue Report", t.toString());
+                         }
+                     }
+
+        );
+
+        if (a != 200) {
+            Log.e("New Issue Report", "Some Problem");
+        }
+
+    }
 
     /*private void previewStoredFirebaseImage() {
         ref.child("issues").addValueEventListener(new ValueEventListener() {
@@ -303,14 +350,13 @@ public class ReportsActivity extends AppCompatActivity {
     }*/
 
 
-
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         switch (requestCode) {
             case Utility.MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    if(userChoosenTask.equals("Take Photo"))
+                    if (userChoosenTask.equals("Take Photo"))
                         cameraIntent();
-                    else if(userChoosenTask.equals("Choose from Library"))
+                    else if (userChoosenTask.equals("Choose from Library"))
                         galleryIntent();
                 } else {
                     //code for deny
@@ -320,24 +366,24 @@ public class ReportsActivity extends AppCompatActivity {
     }
 
     private void selectImage() {
-        final CharSequence[] items = { "Take Photo", "Choose from Library",
-                "Cancel" };
+        final CharSequence[] items = {"Take Photo", "Choose from Library",
+                "Cancel"};
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Add Photo!");
         builder.setItems(items, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int item) {
-                boolean result= Utility.checkPermission(getApplicationContext());
+                boolean result = Utility.checkPermission(getApplicationContext());
 
                 if (items[item].equals("Take Photo")) {
-                    userChoosenTask ="Take Photo";
-                    if(result)
+                    userChoosenTask = "Take Photo";
+                    if (result)
                         cameraIntent();
 
                 } else if (items[item].equals("Choose from Library")) {
-                    userChoosenTask ="Choose from Library";
-                    if(result)
+                    userChoosenTask = "Choose from Library";
+                    if (result)
                         galleryIntent();
 
                 } else if (items[item].equals("Cancel")) {
@@ -349,16 +395,14 @@ public class ReportsActivity extends AppCompatActivity {
     }
 
 
-    private void galleryIntent()
-    {
+    private void galleryIntent() {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);//
-        startActivityForResult(Intent.createChooser(intent, "Select File"),SELECT_FILE);
+        startActivityForResult(Intent.createChooser(intent, "Select File"), SELECT_FILE);
     }
 
-    private void cameraIntent()
-    {
+    private void cameraIntent() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, REQUEST_CAMERA);
     }
@@ -369,9 +413,9 @@ public class ReportsActivity extends AppCompatActivity {
 
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == SELECT_FILE)
-                imageDetails=onSelectFromGalleryResult(data);
+                imageDetails = onSelectFromGalleryResult(data);
             else if (requestCode == REQUEST_CAMERA)
-                imageDetails=onCaptureImageResult(data);
+                imageDetails = onCaptureImageResult(data);
         }
     }
 
@@ -397,15 +441,15 @@ public class ReportsActivity extends AppCompatActivity {
         }
 
         showImageName(System.currentTimeMillis() + ".jpg");
-        s= storeImageToFirebase(data.getData());
-        return  s;
+        s = storeImageToFirebase(data.getData());
+        return s;
     }
 
     @SuppressWarnings("deprecation")
     private String onSelectFromGalleryResult(Intent data) {
         String s;
 
-        Bitmap bm=null;
+        Bitmap bm = null;
         if (data != null) {
             try {
                 bm = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), data.getData());
@@ -416,13 +460,12 @@ public class ReportsActivity extends AppCompatActivity {
         //List<String> x = data.getData().getPathSegments();
         //String y = data.getData().getLastPathSegment();
         showImageName(data.getData().getLastPathSegment().toString());
-        s= storeImageToFirebase(data.getData());
+        s = storeImageToFirebase(data.getData());
         return s;
 
     }
 
-    private void showImageName(String name)
-    {
+    private void showImageName(String name) {
         imageName.setVisibility(View.VISIBLE);
         imageName.setText(name);
     }
@@ -454,7 +497,7 @@ public class ReportsActivity extends AppCompatActivity {
         //firebase.child("pic").setValue(base64Image);
         //System.out.println("Stored image with length: " + bytes.length);
 
-        return  base64Image;
+        return base64Image;
     }
 
 }

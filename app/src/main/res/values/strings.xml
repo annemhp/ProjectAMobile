@@ -1,9 +1,11 @@
 <resources>
-    <string name="app_name">MyMLA</string>
+    <string name="app_name">My MLA</string>
     <string name="action_settings">Settings</string>
     <string name="sign_in">SignIn</string>
     <string name="sign_out">SignOut</string>
-    <string name="title_activity_report">ReportActivity</string>
+    <string name="title_activity_report">Submit your problem</string>
+    <string name="title_activity_status_detail">Your Reports</string>
+    <string name="title_activity_news">News</string>
     <!-- "Report Issue Page" Strings -->
     <string name="etName">Name</string>
     <string name="etMobile">Mobile</string>
@@ -19,6 +21,6 @@
 
     <!-- "taluka_list_view" Strings -->
     <string name="lvTaluka">Select Taluka</string>
-    <string name="title_activity_reports">ReportsActivity</string>
-    <string name="title_activity_contacts">ContactsActivity</string> <!--title for the title dialog box-->
+    <string name="title_activity_reports">Submit your problem</string>
+    <string name="title_activity_contacts">Biography</string> <!--title for the title dialog box-->
 </resources>

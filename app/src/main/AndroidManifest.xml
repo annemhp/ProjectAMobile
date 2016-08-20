@@ -8,7 +8,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/icon_app"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -25,11 +25,14 @@
         </activity>
         <activity
             android:name=".StatusMasterActivity"
+            android:label="@string/title_activity_status_detail"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light" />
         <activity android:name=".StatusDetailActivity" />
 
-        <activity android:name=".SignInActivity"></activity>
+        <activity android:name=".SignInActivity"
+                  android:theme="@style/AppTheme.NoActionBar">
+        </activity>
         <service
             android:name=".MyFirebaseMessagingService"
             android:exported="false">
@@ -49,11 +52,17 @@
             android:name=".ReportsActivity"
             android:label="@string/title_activity_reports"
             android:theme="@style/Theme.AppCompat.Light" />
+
         <activity
             android:name=".ContactsActivity"
             android:label="@string/title_activity_contacts"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".NewsActivity"></activity>
+
+
+        <activity
+            android:name=".NewsActivity"
+            android:label="@string/title_activity_news"
+            android:theme="@style/AppTheme.NoActionBar" ></activity>
 
     </application>
 
