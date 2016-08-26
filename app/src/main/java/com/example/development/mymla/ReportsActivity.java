@@ -240,7 +240,9 @@ public class ReportsActivity extends AppCompatActivity {
 
                     new AlertDialog.Builder(v.getContext())
                             .setTitle("Report Status")
-                            .setMessage("Your Issue has been submitted!!")
+                            .setMessage("Your Issue has been submitted!! " +
+                                    "We will respond with in 15 days. " +
+                                    "Sathish Kumar .V")
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
                                     // continue with delete

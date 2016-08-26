@@ -19,11 +19,11 @@ public class StatusDetail implements Parcelable {
     @SerializedName("status")
     public String status;
     @SerializedName("date")
-    public Date date;
+    public String date;
 
-    public long statusdetailDate;
+   // public long statusdetailDate;
 
-    public StatusDetail(String message, String status, Date date)
+    public StatusDetail(String message, String status, String date)
     {
         this.message = message;
         this.status = status;
@@ -33,7 +33,7 @@ public class StatusDetail implements Parcelable {
     protected StatusDetail(Parcel in) {
         message = in.readString();
         status = in.readString();
-        statusdetailDate = in.readLong();
+        date = in.readString();
     }
 
     public static final Creator<StatusDetail> CREATOR = new Creator<StatusDetail>() {
@@ -64,12 +64,12 @@ public class StatusDetail implements Parcelable {
         this.status = status;
     }
 
-    public Date getDate() {
-        return new Date(statusdetailDate);
+    public String getDate() {
+        return this.date;
     }
 
-    public void setDate(Date date) {
-        statusdetailDate = date.getTime();
+    public void setDate(String date) {
+        this.date = date;
     }
 
     @Override
@@ -81,6 +81,6 @@ public class StatusDetail implements Parcelable {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(message);
         parcel.writeString(status);
-        parcel.writeLong(statusdetailDate);
+        parcel.writeString(date);
     }
 }

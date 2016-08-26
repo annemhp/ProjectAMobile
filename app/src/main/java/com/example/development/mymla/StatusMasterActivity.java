@@ -1,7 +1,9 @@
 package com.example.development.mymla;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -69,7 +71,27 @@ public class StatusMasterActivity extends AppCompatActivity {
 //                {
 //                    statusvalues.get(i).complaintNo = statusvalues.get(i).getComplaintNo();
 //                }
-                recyclerView.setAdapter(new StatusAdapter(statusvalues, R.layout.list_item, getApplicationContext()));
+
+                if(status.size()==0 ){
+                    AlertDialog.Builder builder1 = new AlertDialog.Builder(recyclerView.getRootView().getContext());
+                    builder1.setMessage("Sorry, Currently there are no reports to show. Please come back later.");
+                    builder1.setCancelable(true);
+
+                    builder1.setPositiveButton(
+                            "Back",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                }
+                            });
+
+                    AlertDialog alert11 = builder1.create();
+                    alert11.show();
+
+                }else{
+                    recyclerView.setAdapter(new StatusAdapter(statusvalues, R.layout.list_item, getApplicationContext()));
+                }
+
             }
 
             @Override

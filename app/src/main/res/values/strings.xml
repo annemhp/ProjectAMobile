@@ -15,6 +15,7 @@
     <string name="etProblem">Problem</string>
     <string name="btnAttachImage">Attach Image</string>
     <string name="btnSubmitIssue">Submit Issue</string>
+    <string name="status">Status</string>
 
     <!-- "department_list_view" Strings -->
     <string name="lvDepartment">Select Department</string> <!--title for the department dialog box-->
@@ -23,4 +24,5 @@
     <string name="lvTaluka">Select Taluka</string>
     <string name="title_activity_reports">Submit your problem</string>
     <string name="title_activity_contacts">Biography</string> <!--title for the title dialog box-->
+    <string name="problem_details">Problem Details :</string>
 </resources>

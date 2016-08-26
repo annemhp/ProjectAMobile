@@ -2,6 +2,7 @@ package Models;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -10,7 +11,8 @@ import java.util.List;
  * Created by Development on 8/13/2016.
  */
 
-public class Status {
+
+public class Status implements Serializable{
 
 
 

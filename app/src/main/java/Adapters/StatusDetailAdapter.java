@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import com.example.development.mymla.R;
 import com.example.development.mymla.StatusDetailActivity;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +31,8 @@ public class StatusDetailAdapter extends RecyclerView.Adapter<StatusDetailAdapte
     private int rowLayout;
     private Context context;
 
-    public StatusDetailAdapter(ArrayList<StatusDetail> status, int rowLayout, Context context) {
+    public StatusDetailAdapter(ArrayList<StatusDetail> status,int rowLayout, Context context) {
+
         this.status = status;
         this.rowLayout = rowLayout;
         this.context = context;
@@ -47,12 +50,9 @@ public class StatusDetailAdapter extends RecyclerView.Adapter<StatusDetailAdapte
     @Override
     public void onBindViewHolder(StatusViewHolder holder, final int position) {
 
-
         holder.StatusDetailsMessage.setText(status.get(position).getMessage());
-        if(status.get(position).date != null) {
-            holder.statusDateDetail.setText(status.get(position).getDate().toString().substring(4, 10));
-            holder.statusTimeDetail.setText(status.get(position).getDate().toString().substring(10, 19));
-        }
+        holder.statusDetail.setText("Status : "+status.get(position).getStatus());
+        holder.dateDetail.setText((status.get(position).getDate().substring(0,10)));
 
     }
 
@@ -64,7 +64,7 @@ public class StatusDetailAdapter extends RecyclerView.Adapter<StatusDetailAdapte
 
     public class StatusViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         LinearLayout status_detail_layout;
-        TextView statusDateDetail,statusTimeDetail;
+        TextView statusDetail,dateDetail;
         TextView StatusDetailsMessage;
 
 
@@ -73,8 +73,8 @@ public class StatusDetailAdapter extends RecyclerView.Adapter<StatusDetailAdapte
             super(v);
             v.setOnClickListener(this);
             status_detail_layout = (LinearLayout) v.findViewById(R.id.status_detail_layout);
-            //statusDateDetail = (TextView) v.findViewById(R.id.statusDateDetail);
-            //statusTimeDetail = (TextView) v.findViewById(R.id.statusTimeDetail);
+            statusDetail = (TextView) v.findViewById(R.id.statusDetail);
+            dateDetail = (TextView) v.findViewById(R.id.dateDetail);
             StatusDetailsMessage = (TextView) v.findViewById(R.id.statusMessage);
         }
 

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -104,30 +105,22 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.StatusView
 
         @Override
         public void onClick(View v) {
-            if((status.get(getAdapterPosition()).updates) != null) {
-                ArrayList<StatusDetail> statusDetail = new ArrayList<StatusDetail>(status.get(getAdapterPosition()).getUpdates().values());
+
+                Status  currentIssue= (status.get(getAdapterPosition()));
+                ArrayList<StatusDetail> statusDetail = new ArrayList<StatusDetail>();
+                if(currentIssue.getUpdates()!=null){
+                    statusDetail = new ArrayList<StatusDetail>(currentIssue.getUpdates().values());
+                }
+
+
                 Intent i = new Intent(context, StatusDetailActivity.class);
-                i.putParcelableArrayListExtra("ProductId", statusDetail);
+                i.putExtra("Department",currentIssue.department);
+
+                i.putExtra("Problem",currentIssue.getProblem());
+                i.putParcelableArrayListExtra("Updates", statusDetail);
                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(i);
-            }
-            else
-            {
-                AlertDialog.Builder builder1 = new AlertDialog.Builder(v.getRootView().getContext());
-                builder1.setMessage("There are no updates for this Complaint.");
-                builder1.setCancelable(true);
 
-                builder1.setPositiveButton(
-                        "Back",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        });
-
-                AlertDialog alert11 = builder1.create();
-                alert11.show();
-            }
         }
     }
 }
