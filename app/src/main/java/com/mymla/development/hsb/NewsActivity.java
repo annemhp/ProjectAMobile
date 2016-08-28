@@ -1,8 +1,10 @@
-package com.example.development.mymla;
+package com.mymla.development.hsb;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+
+import com.mymla.development.hsb.R;
 
 public class NewsActivity extends AppCompatActivity {
 

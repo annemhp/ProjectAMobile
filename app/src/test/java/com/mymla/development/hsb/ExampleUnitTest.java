@@ -1,4 +1,4 @@
-package com.example.development.mymla;
+package com.mymla.development.hsb;
 
 import org.junit.Test;
 

@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:id="@+id/status_layout"
     android:orientation="horizontal"
-    tools:context="com.example.development.mymla.MainActivity">
+    tools:context="com.mymla.development.hsb.MainActivity">
 
 
     <LinearLayout

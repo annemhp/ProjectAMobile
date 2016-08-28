@@ -9,7 +9,7 @@
     android:layout_margin="30dp"
     android:orientation="horizontal"
     android:gravity="center"
-    tools:context="com.example.development.mymla.MainActivity">
+    tools:context="com.mymla.development.hsb.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

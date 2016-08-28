@@ -1,25 +1,21 @@
-package com.example.development.mymla;
+package com.mymla.development.hsb;
 
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.View;
 
+import com.mymla.development.hsb.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-import Adapters.Divider;
 import Adapters.DividerItemDecoration;
 import Adapters.StatusAdapter;
 import Models.Status;

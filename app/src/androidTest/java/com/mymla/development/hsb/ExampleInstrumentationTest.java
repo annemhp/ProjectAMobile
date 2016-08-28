@@ -1,4 +1,4 @@
-package com.example.development.mymla;
+package com.mymla.development.hsb;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -24,6 +24,6 @@ public class ExampleInstrumentationTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.development.mymla", appContext.getPackageName());
+        assertEquals("com.mymla.development.mymla", appContext.getPackageName());
     }
 }

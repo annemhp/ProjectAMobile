@@ -9,7 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.example.development.mymla.R;
+import com.mymla.development.hsb.R;
 
 
 /**

@@ -5,6 +5,6 @@
     android:id="@+id/activity_status_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.development.mymla.StatusDetailActivity">
+    tools:context="com.mymla.development.hsb.StatusDetailActivity">
 
 </android.support.constraint.ConstraintLayout>

@@ -1,12 +1,9 @@
 package Adapters;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +11,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.development.mymla.R;
-import com.example.development.mymla.StatusDetailActivity;
+import com.mymla.development.hsb.R;
+import com.mymla.development.hsb.StatusDetailActivity;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import Models.Status;

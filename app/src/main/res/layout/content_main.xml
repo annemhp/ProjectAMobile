@@ -10,7 +10,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_main"
     android:weightSum="3"
-    tools:context="com.example.development.mymla.MainActivity">
+    tools:context="com.mymla.development.hsb.MainActivity">
 
     <LinearLayout
         android:layout_width="wrap_content"

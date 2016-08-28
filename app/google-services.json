@@ -49,6 +49,50 @@
           "status": 2
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:131923577743:android:3f09e4742a1650af",
+        "android_client_info": {
+          "package_name": "com.mymla.development.hsb"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "131923577743-9nimv6k5vsi2juq5mn0rnha4d2n0e3d4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mymla.development.hsb",
+            "certificate_hash": "BCE9A024A92D40CDDA4B608C01AD451065650135"
+          }
+        },
+        {
+          "client_id": "131923577743-e4b0i7ektsa1r1vslh2uolhmgg1041po.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0I-YGvPTWQXBfcKa1ZcAtNaU3CQdIwkQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "131923577743-e4b0i7ektsa1r1vslh2uolhmgg1041po.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
     }
   ],
   "configuration_version": "1"
