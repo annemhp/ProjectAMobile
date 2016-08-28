@@ -102,7 +102,8 @@
                     android:baselineAlignBottom="false"
                     android:clickable="true"
                     android:cropToPadding="false"
-                    android:paddingTop="15dp" />
+                    android:paddingTop="15dp"
+                    android:visibility="gone" />
             </LinearLayout>
         </LinearLayout>
 

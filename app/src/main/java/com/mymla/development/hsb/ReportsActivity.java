@@ -397,7 +397,7 @@ public class ReportsActivity extends AppCompatActivity {
     }
 
     private void selectImage() {
-        final CharSequence[] items = {"Take Photo", "Choose from Library",
+        final CharSequence[] items = {"Choose from Gallery",
                 "Cancel"};
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -412,8 +412,8 @@ public class ReportsActivity extends AppCompatActivity {
                     if (result)
                         cameraIntent();
 
-                } else if (items[item].equals("Choose from Library")) {
-                    userChoosenTask = "Choose from Library";
+                } else if (items[item].equals("Choose from Gallery")) {
+                    userChoosenTask = "Choose from Gallery";
                     if (result)
                         galleryIntent();
 
