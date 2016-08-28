@@ -1,5 +1,6 @@
 package Models;
 
+import android.net.Uri;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
@@ -38,10 +39,10 @@ public class ReportProblem {
     private Date date;
     @SerializedName("status")
     private String status;
-    //@SerializedName("message")
-    //private String image;
+    @SerializedName("imageUri")
+    private Uri imageUri;
 
-    public ReportProblem(String userId, String name, String mobile, String place, String department, String subject, String problem, Date date, String status) {
+    public ReportProblem(String userId, String name, String mobile, String place, String department, String subject, String problem, Date date, String status, Uri imageUri) {
         this.userId = userId;
         this.name = name;
         this.mobile = mobile;
@@ -51,7 +52,7 @@ public class ReportProblem {
         this.problem = problem;
         this.date = date;
         this.status = status;
-        //this.image = image;
+        this.imageUri = imageUri;
     }
 
     public String getUserId() {

@@ -11,19 +11,27 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.mymla.development.hsb.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -42,6 +50,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.UUID;
 
 import Models.ReportProblem;
 import Models.Utility;
@@ -63,6 +72,10 @@ public class ReportsActivity extends AppCompatActivity {
     private EditText editTextDepartment;
     private Button buttonImage;
     private TextView imageName;
+    private Button buttonAttachmentImage;
+    private ImageView image;
+    private String base64Image;
+
 
     private ListView listViewDepartment;
     //private ListView listViewTaluka;
@@ -83,6 +96,13 @@ public class ReportsActivity extends AppCompatActivity {
     //private FirebaseDatabase database = FirebaseDatabase.getInstance();
     //private DatabaseReference databaseRef;
     private DatabaseReference mFirebaseDatabaseReference;
+    private FirebaseStorage storage = FirebaseStorage.getInstance();
+    private StorageReference storageRef;
+    private StorageReference imagesRef;
+
+    private Uri downloadUrl;
+
+    private Uri  imageAttachmentUri;
 
 
     @Override
@@ -91,23 +111,27 @@ public class ReportsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_reports);
 
 
+        // Create a storage reference from our app
+         storageRef = storage.getReferenceFromUrl("gs://projecta1-5156a.appspot.com");
+
+        // Create a child reference
+        // imagesRef now points to "images"
+
+        downloadUrl =null;
+        imageAttachmentUri = null;
+
+
         editTextName = (EditText) findViewById(R.id.editTextName);
         editTextMobile = (EditText) findViewById(R.id.editTextMobile);
         editTextSubject = (EditText) findViewById(R.id.editTextSubject);
         editTextProblem = (EditText) findViewById(R.id.editTextProblem);
         editTextPlace = (EditText) findViewById(R.id.editTextPlace);
         editTextDepartment = (EditText) findViewById(R.id.editTextDepartment);
-        //imageName = (TextView) findViewById(R.id.imageName);
+        imageName = (TextView) findViewById(R.id.imageName);
 
-        //buttonImage = (Button) findViewById(R.id.buttonImage);
+        buttonImage = (Button) findViewById(R.id.buttonImage);
+        buttonAttachmentImage =(Button) findViewById(R.id.btnImageAttachment);
 
-        //Creating firebase object
-        //Firebase ref = new Firebase(Config.FIREBASE_URL);
-        //FirebaseApp app = FirebaseApp.getInstance();
-        //FirebaseDatabase database = FirebaseDatabase.getInstance(app);
-        //FirebaseAuth auth = FirebaseAuth.getInstance(app);
-        //Firebase storage = FirebaseStorage.getInstance(app);
-        //DatabaseReference mFirebaseDatabaseReference = database.getReference("sequence_num");
 
 
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -189,12 +213,17 @@ public class ReportsActivity extends AppCompatActivity {
         });
 
 
-       /* buttonImage.setOnClickListener(new View.OnClickListener() {
+        buttonImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 selectImage();
             }
-        });*/
+        });
+
+
+
+
+
 
         buttonSubmit = (Button) findViewById(R.id.buttonSubmit);
 
@@ -233,7 +262,7 @@ public class ReportsActivity extends AppCompatActivity {
                 } else {
 
 
-                    final ReportProblem newIssue = new ReportProblem(mUsernameId, name, mobile, place, department, subject, problem, today, status);
+                    final ReportProblem newIssue = new ReportProblem(mUsernameId, name, mobile, place, department, subject, problem, today, status,downloadUrl);
 
 
                     new AlertDialog.Builder(v.getContext())
@@ -251,6 +280,8 @@ public class ReportsActivity extends AppCompatActivity {
                                     editTextPlace.setText("");
                                     //imageName.setText("");
                                     // imageName.setVisibility(View.GONE);
+                                    buttonAttachmentImage.setVisibility(View.GONE);
+                                    imageName.setVisibility(View.GONE);
                                 }
                             })
                             .setIcon(android.R.drawable.ic_dialog_alert)
@@ -428,6 +459,8 @@ public class ReportsActivity extends AppCompatActivity {
         File destination = new File(Environment.getExternalStorageDirectory(),
                 System.currentTimeMillis() + ".jpg");
 
+
+
         FileOutputStream fo;
         try {
             destination.createNewFile();
@@ -441,6 +474,8 @@ public class ReportsActivity extends AppCompatActivity {
         }
 
         showImageName(System.currentTimeMillis() + ".jpg");
+
+
         s = storeImageToFirebase(data.getData());
         return s;
     }
@@ -459,7 +494,8 @@ public class ReportsActivity extends AppCompatActivity {
         }
         //List<String> x = data.getData().getPathSegments();
         //String y = data.getData().getLastPathSegment();
-        showImageName(data.getData().getLastPathSegment().toString());
+       // showImageName(data.getData().getLastPathSegment().toString());
+        showImageName("Upload in Progress");
         s = storeImageToFirebase(data.getData());
         return s;
 
@@ -467,10 +503,21 @@ public class ReportsActivity extends AppCompatActivity {
 
     private void showImageName(String name) {
         imageName.setVisibility(View.VISIBLE);
+        buttonAttachmentImage.setVisibility(View.GONE);
         imageName.setText(name);
     }
 
     private String storeImageToFirebase(Uri path) {
+
+        imagesRef = storageRef.child("Images/"+ mUsernameId +"/"+ UUID.randomUUID().toString());
+
+
+
+
+
+
+
+        imageAttachmentUri = path;
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = 6; // shrink it down otherwise we will use stupid amounts of memory
         Bitmap bitmap = null;
@@ -491,13 +538,61 @@ public class ReportsActivity extends AppCompatActivity {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] bytes = baos.toByteArray();
-        String base64Image = Base64.encodeToString(bytes, Base64.DEFAULT);
+         base64Image = Base64.encodeToString(bytes, Base64.DEFAULT);
+
+
+        UploadTask uploadTask = imagesRef.putBytes(bytes);
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle unsuccessful uploads
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
+                 downloadUrl = taskSnapshot.getDownloadUrl();
+                imageName.setVisibility(View.GONE);
+                buttonAttachmentImage.setVisibility(View.VISIBLE);
+                previewAttachment();
+            }
+        });
+
+
 
         // we finally have our base64 string version of the image, save it.
         //firebase.child("pic").setValue(base64Image);
         //System.out.println("Stored image with length: " + bytes.length);
 
         return base64Image;
+    }
+
+
+
+    private void previewAttachment(){
+        buttonAttachmentImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                LayoutInflater factory = LayoutInflater.from(view.getContext());
+                final View imgView = factory.inflate(R.layout.image_attachment, null);
+
+                image = (ImageView) imgView.findViewById(R.id.imagePreview);
+                image.setImageURI(imageAttachmentUri);
+
+                new AlertDialog.Builder(view.getContext())
+                        .setTitle("Attached Image")
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        })
+                        .setView(imgView)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+
+            }
+        });
     }
 
 }

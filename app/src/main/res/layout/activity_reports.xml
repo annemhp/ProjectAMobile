@@ -80,7 +80,7 @@
         android:scrollbars="vertical"
         android:background="@drawable/rounded_edittext"
         android:layout_marginBottom = "5dp"/>
-    <!--<RelativeLayout
+  <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Button
@@ -99,7 +99,16 @@
             android:layout_toRightOf="@+id/buttonImage"
             android:layout_toEndOf="@+id/buttonImage"
             android:layout_marginLeft="10dp"/>
-    </RelativeLayout>-->
+      <Button android:visibility="gone"
+          android:id="@+id/btnImageAttachment"
+          android:text="@string/btnImageAttachment"
+          android:layout_centerVertical="true"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_toRightOf="@+id/buttonImage"
+          android:layout_toEndOf="@+id/buttonImage"
+          android:layout_marginLeft="10dp" />
+    </RelativeLayout>
 
     <Button
         android:id="@+id/buttonSubmit"
