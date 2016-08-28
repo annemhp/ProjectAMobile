@@ -111,6 +111,8 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.StatusView
 
                 Intent i = new Intent(context, StatusDetailActivity.class);
                 i.putExtra("Department",currentIssue.department);
+                i.putExtra("Place",currentIssue.place);
+
 
                 i.putExtra("Problem",currentIssue.getProblem());
                 i.putParcelableArrayListExtra("Updates", statusDetail);

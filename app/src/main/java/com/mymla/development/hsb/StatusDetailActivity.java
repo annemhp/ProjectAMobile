@@ -20,6 +20,7 @@ public class StatusDetailActivity extends AppCompatActivity {
     Intent intent;
     String problem;
     String department;
+    String place;
     ArrayList<StatusDetail> statusDetails;
     Status status;
        public static final String TAG = MainActivity.class.getSimpleName();
@@ -33,8 +34,9 @@ public class StatusDetailActivity extends AppCompatActivity {
         statusDetails=(ArrayList<StatusDetail>) intent.getSerializableExtra("Updates");
         department = intent.getStringExtra("Department");
         problem = intent.getStringExtra("Problem");
+        place = intent.getStringExtra("Place");
 
-        TextView updateHeader,problemText;
+        TextView updateHeader,problemText, departmentText,placeText;
 
          updateHeader = (TextView) findViewById(R.id.updateHeading);
 
@@ -46,6 +48,14 @@ public class StatusDetailActivity extends AppCompatActivity {
 
         problemText =(TextView) findViewById(R.id.problemDetail);
         problemText.setText(problem);
+
+        departmentText = (TextView) findViewById(R.id.deptDetail);
+        departmentText.setText(department);
+
+        placeText = (TextView) findViewById(R.id.placeDetails);
+        placeText.setText(place);
+
+
 
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.reports2_recycler_view);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));

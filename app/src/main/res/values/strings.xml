@@ -24,6 +24,11 @@
     <string name="lvTaluka">Select Taluka</string>
     <string name="title_activity_reports">Submit your problem</string>
     <string name="title_activity_contacts">Biography</string> <!--title for the title dialog box-->
-    <string name="problem_details">Problem Details :</string>
+
     <string name="btnImageAttachment">View Attached File</string>
+    !-- "Report Details" Strings -->
+
+    <string name="problem_details">Problem Details :</string>
+    <string name="lbl_place">      Place              :</string>
+    <string name="lbl_department"> Department      :</string>
 </resources>

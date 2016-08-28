@@ -14,6 +14,49 @@
         android:layout_height="wrap_content"
         tools:context=".activity.MainActivity">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/lbl_department"
+            android:id="@+id/lbl_dept"
+            android:paddingTop="5sp"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            android:fontFamily="sans-serif" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textStyle="normal"
+            android:layout_toRightOf="@+id/lbl_dept"
+            android:id="@+id/deptDetail"
+            android:textSize="20sp"
+            android:paddingTop="5sp"
+            android:fontFamily="sans-serif" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/lbl_place"
+            android:id="@+id/lbl_pls"
+            android:paddingTop="5sp"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            android:layout_below="@id/lbl_dept"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textStyle="normal"
+            android:layout_toRightOf="@+id/lbl_pls"
+            android:id="@+id/placeDetails"
+            android:textSize="20sp"
+            android:paddingTop="5sp"
+            android:layout_below="@id/deptDetail"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -23,7 +66,8 @@
             android:id="@+id/problemHeader"
             android:paddingTop="5sp"
             android:textSize="20sp"
-            android:textStyle="normal" />
+            android:textStyle="normal"
+            android:layout_below="@id/lbl_pls"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -33,18 +77,31 @@
             android:layout_toRightOf="@+id/problemHeader"
             android:id="@+id/problemDetail"
             android:textSize="20sp"
-            android:paddingTop="5sp" />
+            android:paddingTop="5sp"
+            android:layout_below="@id/placeDetails"/>
+
+
+        <Button
+            android:id="@+id/btnImageAttachment"
+            android:text="@string/btnImageAttachment"
+            android:layout_centerVertical="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/problemDetail"
+            android:layout_marginLeft="10dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:textStyle="normal"
-            android:layout_below="@id/problemDetail"
+            android:layout_below="@id/btnImageAttachment"
 
             android:id="@+id/updateHeading"
             android:textSize="20sp"
             android:paddingTop="5sp" />
+
+
 
 
         <android.support.v7.widget.RecyclerView
