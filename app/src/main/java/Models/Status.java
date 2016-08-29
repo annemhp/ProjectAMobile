@@ -1,5 +1,7 @@
 package Models;
 
+import android.net.Uri;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -37,12 +39,14 @@ public class Status implements Serializable{
     public HashMap<String,StatusDetail> updates;
     @SerializedName("userId")
     public String userId;
+    @SerializedName("imageUri")
+    private String imageUri;
 
 
 
     public Status(String complaintNo,Date date, String department, String mobile, String name,
                         String place, String problem, String subject, String status,
-                            HashMap<String,StatusDetail> updates,String userId) {
+                            HashMap<String,StatusDetail> updates,String userId,String imageUri) {
         this.complaintNo = complaintNo;
         this.date = date;
         this.department = department;
@@ -54,6 +58,7 @@ public class Status implements Serializable{
         this.status = status;
         this.updates = updates;
         this.userId = userId;
+        this.imageUri = imageUri;
 
     }
 
@@ -144,4 +149,17 @@ public class Status implements Serializable{
     public void setUpdates(HashMap<String,StatusDetail> updates) {
         this.updates = updates;
     }
+
+
+    public String getImageUri() {
+        return imageUri;
+    }
+
+
+    public void setImageUri(String imageUri) {
+        this.imageUri = imageUri;
+    }
+
+
+
 }

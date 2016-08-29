@@ -103,6 +103,7 @@ public class ReportsActivity extends AppCompatActivity {
     private Uri downloadUrl;
 
     private Uri  imageAttachmentUri;
+    private  String imageRef;
 
 
     @Override
@@ -119,6 +120,7 @@ public class ReportsActivity extends AppCompatActivity {
 
         downloadUrl =null;
         imageAttachmentUri = null;
+        imageRef =null;
 
 
         editTextName = (EditText) findViewById(R.id.editTextName);
@@ -262,7 +264,7 @@ public class ReportsActivity extends AppCompatActivity {
                 } else {
 
 
-                    final ReportProblem newIssue = new ReportProblem(mUsernameId, name, mobile, place, department, subject, problem, today, status,downloadUrl);
+                    final ReportProblem newIssue = new ReportProblem(mUsernameId, name, mobile, place, department, subject, problem, today, status,imageRef);
 
 
                     new AlertDialog.Builder(v.getContext())
@@ -509,11 +511,8 @@ public class ReportsActivity extends AppCompatActivity {
 
     private String storeImageToFirebase(Uri path) {
 
-        imagesRef = storageRef.child("Images/"+ mUsernameId +"/"+ UUID.randomUUID().toString());
-
-
-
-
+        imageRef ="Images/"+ mUsernameId +"/"+ UUID.randomUUID().toString();
+        imagesRef = storageRef.child(imageRef);
 
 
 

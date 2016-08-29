@@ -40,9 +40,9 @@ public class ReportProblem {
     @SerializedName("status")
     private String status;
     @SerializedName("imageUri")
-    private Uri imageUri;
+    private String imageRef;
 
-    public ReportProblem(String userId, String name, String mobile, String place, String department, String subject, String problem, Date date, String status, Uri imageUri) {
+    public ReportProblem(String userId, String name, String mobile, String place, String department, String subject, String problem, Date date, String status,String imageRef) {
         this.userId = userId;
         this.name = name;
         this.mobile = mobile;
@@ -52,7 +52,7 @@ public class ReportProblem {
         this.problem = problem;
         this.date = date;
         this.status = status;
-        this.imageUri = imageUri;
+        this.imageRef = imageRef;
     }
 
     public String getUserId() {

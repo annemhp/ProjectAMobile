@@ -22,7 +22,7 @@
             android:id="@+id/lbl_dept"
             android:paddingTop="5sp"
             android:textSize="20sp"
-            android:textStyle="normal"
+            android:textStyle="bold"
             android:fontFamily="sans-serif" />
 
         <TextView
@@ -44,7 +44,7 @@
             android:id="@+id/lbl_pls"
             android:paddingTop="5sp"
             android:textSize="20sp"
-            android:textStyle="normal"
+            android:textStyle="bold"
             android:layout_below="@id/lbl_dept"/>
 
         <TextView
@@ -66,7 +66,7 @@
             android:id="@+id/problemHeader"
             android:paddingTop="5sp"
             android:textSize="20sp"
-            android:textStyle="normal"
+            android:textStyle="bold"
             android:layout_below="@id/lbl_pls"/>
 
         <TextView
@@ -81,7 +81,7 @@
             android:layout_below="@id/placeDetails"/>
 
 
-        <Button
+        <Button android:visibility="gone"
             android:id="@+id/btnImageAttachment"
             android:text="@string/btnImageAttachment"
             android:layout_centerVertical="true"

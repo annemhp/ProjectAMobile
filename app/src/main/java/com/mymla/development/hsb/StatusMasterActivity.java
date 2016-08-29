@@ -93,7 +93,7 @@ public class StatusMasterActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<LinkedHashMap<String,Status>> call, Throwable t) {
 
-                Log.e(TAG, t.toString());
+                Log.e("Error in Get", t.toString());
             }
         });
     }
