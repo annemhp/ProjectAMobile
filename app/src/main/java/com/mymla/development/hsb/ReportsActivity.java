@@ -217,7 +217,7 @@ public class ReportsActivity extends AppCompatActivity {
                 String subject = editTextSubject.getText().toString();
 
                 Date today = new Date();
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
                 String date = sdf.format(today);
                 String status = "open";
 
@@ -228,7 +228,7 @@ public class ReportsActivity extends AppCompatActivity {
                 } else {
 
 
-                    final ReportProblem newIssue = new ReportProblem(mUsernameId, name, mobile, place, department, subject, problem, today, status,imageRef);
+                    final ReportProblem newIssue = new ReportProblem(mUsernameId, name, mobile, place, department, subject, problem, date, status,imageRef);
 
 
                     new AlertDialog.Builder(v.getContext())
@@ -444,6 +444,7 @@ public class ReportsActivity extends AppCompatActivity {
     private void showImageName(String name) {
         imageName.setVisibility(View.VISIBLE);
         buttonAttachmentImage.setVisibility(View.GONE);
+        buttonSubmit.setVisibility(View.GONE);
         imageName.setText(name);
     }
 
@@ -491,6 +492,7 @@ public class ReportsActivity extends AppCompatActivity {
                  downloadUrl = taskSnapshot.getDownloadUrl();
                 imageName.setVisibility(View.GONE);
                 buttonAttachmentImage.setVisibility(View.VISIBLE);
+                buttonSubmit.setVisibility(View.VISIBLE);
                 previewAttachment();
             }
         });

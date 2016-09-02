@@ -20,7 +20,7 @@ public class Status implements Serializable{
 
     public String complaintNo;
     @SerializedName("date")
-    public Date date;
+    public String date;
     @SerializedName("department")
     public String department;
     @SerializedName("mobile")
@@ -44,7 +44,7 @@ public class Status implements Serializable{
 
 
 
-    public Status(String complaintNo,Date date, String department, String mobile, String name,
+    public Status(String complaintNo,String date, String department, String mobile, String name,
                         String place, String problem, String subject, String status,
                             HashMap<String,StatusDetail> updates,String userId,String imageUri) {
         this.complaintNo = complaintNo;
@@ -70,11 +70,11 @@ public class Status implements Serializable{
         this.complaintNo = complaintNo;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

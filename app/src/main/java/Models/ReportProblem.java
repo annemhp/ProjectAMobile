@@ -36,13 +36,13 @@ public class ReportProblem {
     @SerializedName("problem")
     private String problem;
     @SerializedName("date")
-    private Date date;
+    private String date;
     @SerializedName("status")
     private String status;
     @SerializedName("imageUri")
     private String imageRef;
 
-    public ReportProblem(String userId, String name, String mobile, String place, String department, String subject, String problem, Date date, String status,String imageRef) {
+    public ReportProblem(String userId, String name, String mobile, String place, String department, String subject, String problem, String date, String status,String imageRef) {
         this.userId = userId;
         this.name = name;
         this.mobile = mobile;
@@ -111,11 +111,11 @@ public class ReportProblem {
         this.problem = problem;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
