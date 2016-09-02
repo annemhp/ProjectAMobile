@@ -47,6 +47,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -78,7 +79,7 @@ public class ReportsActivity extends AppCompatActivity {
 
 
     private ListView listViewDepartment;
-    //private ListView listViewTaluka;
+
     int a = 0;
 
     private int REQUEST_CAMERA = 0, SELECT_FILE = 1;
@@ -92,9 +93,7 @@ public class ReportsActivity extends AppCompatActivity {
     private FirebaseUser mFirebaseUser;
     private String mUsernameId;
     private String mUsername;
-    //private FirebaseApp app = FirebaseApp.getInstance();
-    //private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    //private DatabaseReference databaseRef;
+
     private DatabaseReference mFirebaseDatabaseReference;
     private FirebaseStorage storage = FirebaseStorage.getInstance();
     private StorageReference storageRef;
@@ -144,43 +143,7 @@ public class ReportsActivity extends AppCompatActivity {
         editTextName.setText(mUsername);
 
         mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
-        /*final ArrayList<String> tal = new ArrayList<String>();
-        tal.add("AmberPet");
-        tal.add("Golconda");
-        tal.add("Musheerabad");
-        tal.add("Secundabad");
-        tal.add("Shaikpet");
 
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, tal);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        editTextTaluka.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final Dialog dialog = new Dialog(view.getContext());
-                dialog.setContentView(R.layout.taluka_list_view);
-                dialog.setTitle(R.string.lvTaluka);
-                listViewTaluka = (ListView) dialog.findViewById(R.id.listViewTaluka);
-                dialog.show();
-
-                ArrayAdapter<String> dataAdapterDept = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_list_item_1, android.R.id.text1, tal);
-                listViewTaluka.setAdapter(dataAdapterDept);
-                listViewTaluka.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view,
-                                            int position, long id) {
-                        String itemValue = (String) listViewTaluka
-                                .getItemAtPosition(position);
-
-                        editTextTaluka.setText(itemValue);
-                        dialog.cancel();
-                    }
-
-                });
-
-            }
-        });*/
 
         final ArrayList<String> dept = new ArrayList<String>();
         dept.addAll(Departments.departmants);
@@ -252,9 +215,8 @@ public class ReportsActivity extends AppCompatActivity {
                 String subject = editTextSubject.getText().toString();
 
                 Date today = new Date();
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 String date = sdf.format(today);
-
                 String status = "open";
 
 
@@ -280,8 +242,6 @@ public class ReportsActivity extends AppCompatActivity {
                                     editTextSubject.setText("");
                                     editTextProblem.setText("");
                                     editTextPlace.setText("");
-                                    //imageName.setText("");
-                                    // imageName.setVisibility(View.GONE);
                                     buttonAttachmentImage.setVisibility(View.GONE);
                                     imageName.setVisibility(View.GONE);
                                 }
@@ -292,7 +252,6 @@ public class ReportsActivity extends AppCompatActivity {
 
                     DatabaseReference postRef = mFirebaseDatabaseReference.child("sequence_num");
 
-                    //postRef.setValue(7);
 
                     final DatabaseReference issuesRef = mFirebaseDatabaseReference.child("issues");
 
@@ -314,10 +273,6 @@ public class ReportsActivity extends AppCompatActivity {
                         public void onComplete(DatabaseError databaseError, boolean b,
                                                DataSnapshot dataSnapshot) {
 
-                            // Transaction completed
-                            // Log.d(TAG, "postTransaction:onComplete:" + databaseError);
-                            //Log.i("Transaction", dataSnapshot.child("sequence_num").getValue().toString());
-
                             Log.i("Transaction", dataSnapshot.getValue().toString());
 
                             newIssue.setComplaintNo((Long) dataSnapshot.getValue());
@@ -325,10 +280,6 @@ public class ReportsActivity extends AppCompatActivity {
                             submitReport(newIssue);
                         }
                     });
-
-
-                    // Log.i("New Issue ", newIssue.getComplaintNumber().toString());
-
                 }
             }
         });
@@ -365,22 +316,7 @@ public class ReportsActivity extends AppCompatActivity {
 
     }
 
-    /*private void previewStoredFirebaseImage() {
-        ref.child("issues").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot snapshot) {
-                String base64Image = (String) snapshot.getValue();
-                byte[] imageAsBytes = Base64.decode(base64Image.getBytes(), Base64.DEFAULT);
-                imageView.setImageBitmap(
-                        BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length)
-                );
-                System.out.println("Downloaded image with length: " + imageAsBytes.length);
-            }
 
-            @Override
-            public void onCancelled(FirebaseError error) {}
-        });
-    }*/
 
 
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -556,12 +492,6 @@ public class ReportsActivity extends AppCompatActivity {
                 previewAttachment();
             }
         });
-
-
-
-        // we finally have our base64 string version of the image, save it.
-        //firebase.child("pic").setValue(base64Image);
-        //System.out.println("Stored image with length: " + bytes.length);
 
         return base64Image;
     }

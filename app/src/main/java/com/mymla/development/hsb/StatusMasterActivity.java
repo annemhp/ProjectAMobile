@@ -63,10 +63,6 @@ public class StatusMasterActivity extends AppCompatActivity {
                 LinkedHashMap<String,Status> status = response.body()!=null ?response.body() : new LinkedHashMap<String, Status>() ;
                 List<Status> statusvalues = new ArrayList<Status>(status.values());
                 List<String> keys = new ArrayList<String>(status.keySet());
-//                for(int i=0;i<statusvalues.size();i++)
-//                {
-//                    statusvalues.get(i).complaintNo = statusvalues.get(i).getComplaintNo();
-//                }
 
                 if(status.size()==0 ){
                     AlertDialog.Builder builder1 = new AlertDialog.Builder(recyclerView.getRootView().getContext());

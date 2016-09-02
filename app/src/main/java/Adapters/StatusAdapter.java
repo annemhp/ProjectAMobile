@@ -50,8 +50,8 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.StatusView
 
 
         holder.StatusComplaintNo.setText(status.get(position).getComplaintNo());
-        holder.statusDate.setText(status.get(position).getDate().toString().substring(4,10));
-        holder.statusTime.setText(status.get(position).getDate().toString().substring(10,19));
+        holder.statusDate.setText(status.get(position).getDate().toString());
+
 
         holder.statusSubject.setText(status.get(position).getSubject());
         if(status.get(position).getStatus().equals("resolved")) {
