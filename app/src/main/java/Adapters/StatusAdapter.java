@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -115,7 +114,7 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.StatusView
                 i.putExtra("Place",currentIssue.place);
 
 
-
+                i.putExtra("Name",currentIssue.name);
                 i.putExtra("ImageRef",currentIssue.getImageUri()!=null?currentIssue.getImageUri():"");
                 i.putExtra("Problem",currentIssue.getProblem());
                 i.putParcelableArrayListExtra("Updates", statusDetail);

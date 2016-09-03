@@ -1,116 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/content_main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.mymla.development.hsb.MainActivity">
-
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:context=".activity.MainActivity">
-
-        <TextView
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="@string/lbl_department"
-            android:id="@+id/lbl_dept"
-            android:paddingTop="5sp"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:fontFamily="sans-serif" />
+            android:fillViewport="true">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:textStyle="normal"
-            android:layout_toRightOf="@+id/lbl_dept"
-            android:id="@+id/deptDetail"
-            android:textSize="20sp"
-            android:paddingTop="5sp"
-            android:fontFamily="sans-serif" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="@string/lbl_place"
-            android:id="@+id/lbl_pls"
-            android:paddingTop="5sp"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_below="@id/lbl_dept"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:textStyle="normal"
-            android:layout_toRightOf="@+id/lbl_pls"
-            android:id="@+id/placeDetails"
-            android:textSize="20sp"
-            android:paddingTop="5sp"
-            android:layout_below="@id/deptDetail"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="@string/problem_details"
-            android:id="@+id/problemHeader"
-            android:paddingTop="5sp"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_below="@id/lbl_pls"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:textStyle="normal"
-            android:layout_toRightOf="@+id/problemHeader"
-            android:id="@+id/problemDetail"
-            android:textSize="20sp"
-            android:paddingTop="5sp"
-            android:layout_below="@id/placeDetails"/>
-
-
-        <Button android:visibility="gone"
-            android:id="@+id/btnImageAttachment"
-            android:text="@string/btnImageAttachment"
-            android:layout_centerVertical="true"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/problemDetail"
-            android:layout_marginLeft="10dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:textStyle="normal"
-            android:layout_below="@id/btnImageAttachment"
-
-            android:id="@+id/updateHeading"
-            android:textSize="20sp"
-            android:paddingTop="5sp" />
-
-
-
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/reports2_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/updateHeading"
-            android:scrollbars="vertical" />
+            android:scrollbars="vertical"/>
+
+
+        <TableLayout
+            android:id="@+id/tbl_problem_details"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_below="@id/reports2_recycler_view"
+            android:padding="15dp"
+            android:layout_marginTop="10dp"
+            android:stretchColumns="*">
+
+            <TableRow android:layout_margin="5dp">
+
+                <TextView
+                    android:id="@+id/lbl_Name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/lbl_name"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/nameDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_toRightOf="@+id/lbl_Name"
+                    android:fontFamily="sans-serif"
+                    android:textStyle="normal"/>
+
+            </TableRow>
+
+            <TableRow android:layout_margin="5dp">
+
+                <TextView
+                    android:id="@+id/lbl_dept"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/lbl_department"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/deptDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_toRightOf="@+id/lbl_dept"
+                    android:fontFamily="sans-serif"
+                    android:textStyle="normal"/>
+
+            </TableRow>
+
+
+            <TableRow android:layout_margin="5dp">
+
+                <TextView
+                    android:id="@+id/lbl_pls"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/lbl_dept"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/lbl_place"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/placeDetails"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/deptDetail"
+                    android:layout_gravity="center_vertical"
+                    android:layout_toRightOf="@+id/lbl_pls"
+                    android:textStyle="normal"/>
+            </TableRow>
+
+            <TableRow android:layout_margin="5dp">
+
+                <TextView
+                    android:id="@+id/problemHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/lbl_pls"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/problem_details"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/problemDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/placeDetails"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:scrollHorizontally="true"/>
+            </TableRow>
+        </TableLayout>
+
+        <Button
+            android:id="@+id/btnImageAttachment"
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/tbl_problem_details"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:background="#ec008c"
+            android:text="@string/btnImageAttachment"
+            android:textColor="#ffffff"
+            android:textSize="12dp"
+            android:visibility="gone"/>
 
     </RelativeLayout>
 
-</android.support.constraint.ConstraintLayout>
+</ScrollView>
+

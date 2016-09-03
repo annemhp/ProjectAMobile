@@ -59,11 +59,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "131923577743-9nimv6k5vsi2juq5mn0rnha4d2n0e3d4.apps.googleusercontent.com",
+          "client_id": "131923577743-2k5hg3om6a876nc4l623q2kctj4o6pc7.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.mymla.development.hsb",
-            "certificate_hash": "BCE9A024A92D40CDDA4B608C01AD451065650135"
+            "certificate_hash": "473AB90DFD85530686CBC58F841BE5B33760E353"
           }
         },
         {
