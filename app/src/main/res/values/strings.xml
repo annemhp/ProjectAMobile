@@ -35,4 +35,8 @@
     <string name="lbl_department"> Department:</string>
     <string name="lbl_name">Name:</string>
 
+    <string name="alert_success_msg">Your report has been submitted. We will respond with in 15 days.</string>\
+
+    <string name="alert_name_mla">V Satish Kumar, MLA, Husnabad.</string>
+
 </resources>

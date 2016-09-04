@@ -2,6 +2,7 @@ package com.mymla.development.hsb;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -110,6 +111,7 @@ public class ReportsActivity extends AppCompatActivity {
     private String imageRef;
     private LinearLayout llReports;
 
+    final Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,7 +141,7 @@ public class ReportsActivity extends AppCompatActivity {
         editTextDepartment = (EditText) findViewById(R.id.editTextDepartment);
         imageName = (TextView) findViewById(R.id.imageName);
 
-        ff_report = (FrameLayout)findViewById(R.id.frame_report);
+        ff_report = (FrameLayout) findViewById(R.id.frame_report);
 
         buttonImage = (Button) findViewById(R.id.buttonImage);
         buttonAttachmentImage = (Button) findViewById(R.id.btnImageAttachment);
@@ -240,27 +242,20 @@ public class ReportsActivity extends AppCompatActivity {
 
                         final ReportProblem newIssue = new ReportProblem(mUsernameId, name, mobile, place, department, subject, problem, date, status, imageRef);
 
-                        new AlertDialog.Builder(v.getContext())
-                                .setTitle("Report Status")
-                                .setMessage("Your Issue has been submitted!! " +
-                                        "We will respond with in 15 days. " +
-                                        "Sathish Kumar .V")
-                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        // continue with delete
-                                        editTextName.setText("");
-                                        editTextMobile.setText("");
-                                        editTextSubject.setText("");
-                                        editTextProblem.setText("");
-                                        editTextPlace.setText("");
-                                        editTextDepartment.setText("");
-                                        ff_report.setBackgroundColor(Color.TRANSPARENT);
-                                        buttonAttachmentImage.setVisibility(View.GONE);
-                                        imageName.setVisibility(View.GONE);
-                                    }
-                                })
-                                .setIcon(android.R.drawable.ic_dialog_alert)
-                                .show();
+
+                        final CustomAlertDialog dialog = new CustomAlertDialog(v.getContext());
+                        dialog.show();
+
+                        editTextName.setText("");
+                        editTextMobile.setText("");
+                        editTextSubject.setText("");
+                        editTextProblem.setText("");
+                        editTextPlace.setText("");
+                        editTextDepartment.setText("");
+                        ff_report.setBackgroundColor(Color.TRANSPARENT);
+                        buttonAttachmentImage.setVisibility(View.GONE);
+                        imageName.setVisibility(View.GONE);
+
 
                         DatabaseReference postRef = mFirebaseDatabaseReference.child("sequence_num");
 
@@ -356,7 +351,7 @@ public class ReportsActivity extends AppCompatActivity {
             problemTextLayout.setErrorEnabled(false);
             editTextProblem.setBackground(ContextCompat.getDrawable(this, R.drawable.rounded_edittext));
         }
-        if(!isValid){
+        if (!isValid) {
             ff_report.setBackgroundColor(Color.parseColor("#3f3f3f"));
         }
 
@@ -582,7 +577,6 @@ public class ReportsActivity extends AppCompatActivity {
 
                 image = (ImageView) imgView.findViewById(R.id.imagePreview);
                 image.setImageURI(imageAttachmentUri);
-
                 new AlertDialog.Builder(view.getContext())
                         .setTitle("Attached Image")
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
@@ -591,9 +585,7 @@ public class ReportsActivity extends AppCompatActivity {
                             }
                         })
                         .setView(imgView)
-                        .setIcon(android.R.drawable.ic_dialog_alert)
                         .show();
-
             }
         });
     }

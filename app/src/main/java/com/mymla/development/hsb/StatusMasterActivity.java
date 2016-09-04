@@ -1,14 +1,13 @@
 package com.mymla.development.hsb;
 
 import android.content.DialogInterface;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
-import com.mymla.development.hsb.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -16,7 +15,6 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-import Adapters.DividerItemDecoration;
 import Adapters.StatusAdapter;
 import Models.Status;
 import RestService.IMyMLAService;
@@ -40,7 +38,7 @@ public class StatusMasterActivity extends AppCompatActivity {
         setContentView(R.layout.reports_master);
 
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.reports_recycler_view);
-        recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+        //recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         IMyMLAService apiService =
