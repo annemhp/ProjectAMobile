@@ -125,8 +125,10 @@ public class StatusDetailActivity extends AppCompatActivity {
         final View imgView = factory.inflate(R.layout.image_attachment, null);
 
         ImageView image = (ImageView) imgView.findViewById(R.id.imagePreview);
-        image.setImageBitmap(
-                BitmapFactory.decodeByteArray(imgBytes, 0, imgBytes.length));
+        if(imgBytes != null && imgBytes.length > 0) {
+            image.setImageBitmap(
+                    BitmapFactory.decodeByteArray(imgBytes, 0, imgBytes.length));
+        }
 
         new AlertDialog.Builder(view.getContext())
                 .setTitle("Attached Image")

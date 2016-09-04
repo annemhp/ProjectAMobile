@@ -1,11 +1,13 @@
 <resources>
     <string name="app_name">My MLA</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Credits</string>
     <string name="sign_in">SignIn</string>
     <string name="sign_out">SignOut</string>
     <string name="title_activity_report">Submit your problem</string>
-    <string name="title_activity_status_detail">Your Reports</string>
+    <string name="title_activity_status_detail">My Reports</string>
     <string name="title_activity_news">News</string>
+    <string name="title_activity_credits">Credits</string>
+
     <!-- "Report Issue Page" Strings -->
     <string name="etName">Name</string>
     <string name="etMobile">Mobile</string>
@@ -13,8 +15,8 @@
     <string name="etSubject">Subject</string>
     <string name="etDepartment">Department</string>
     <string name="etProblem">Problem</string>
-    <string name="btnAttachImage">Attach Image</string>
-    <string name="btnSubmitIssue">Submit Issue</string>
+    <string name="btnAttachImage">Attach</string>
+    <string name="btnSubmitIssue">Submit</string>
     <string name="status">Status</string>
 
     <!-- "department_list_view" Strings -->
