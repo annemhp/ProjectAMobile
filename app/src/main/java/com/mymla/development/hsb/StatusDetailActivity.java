@@ -92,7 +92,7 @@ public class StatusDetailActivity extends AppCompatActivity {
 
     private void getImageFromUrl() {
         storage = FirebaseStorage.getInstance();
-        storageRef = storage.getReferenceFromUrl("gs://projecta1-5156a.appspot.com");
+        storageRef = storage.getReferenceFromUrl("gs://projectabeta-3e48d.appspot.com");
         StorageReference previewImg = storageRef.child(imageRef);
         previewImg.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
@@ -125,6 +125,7 @@ public class StatusDetailActivity extends AppCompatActivity {
         final View imgView = factory.inflate(R.layout.image_attachment, null);
 
         ImageView image = (ImageView) imgView.findViewById(R.id.imagePreview);
+
         if(imgBytes != null && imgBytes.length > 0) {
             image.setImageBitmap(
                     BitmapFactory.decodeByteArray(imgBytes, 0, imgBytes.length));
@@ -138,7 +139,6 @@ public class StatusDetailActivity extends AppCompatActivity {
                     }
                 })
                 .setView(imgView)
-                .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
     }
 }

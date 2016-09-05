@@ -123,7 +123,8 @@ public class ReportsActivity extends AppCompatActivity {
         llReports = (LinearLayout) findViewById(R.id.ll_report);
 
         // Create a storage reference from our app
-        storageRef = storage.getReferenceFromUrl("gs://projecta1-5156a.appspot.com");
+        storageRef = storage.getReferenceFromUrl("gs://projectabeta-3e48d.appspot.com");
+
 
         // Create a child reference
         // imagesRef now points to "images"
