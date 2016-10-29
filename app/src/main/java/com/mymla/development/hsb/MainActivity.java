@@ -175,6 +175,7 @@ public class MainActivity extends AppCompatActivity
             mFirebaseAuth.signOut();
             Auth.GoogleSignInApi.signOut(mGoogleApiClient);
             mUsername = ANONYMOUS;
+            mFirebaseUser = null;
             startActivity(new Intent(this, SignInActivity.class));
             return true;
 
