@@ -41,12 +41,21 @@ public class Status implements Serializable{
     public String userId;
     @SerializedName("imageUri")
     private String imageUri;
+    @SerializedName("imageRef")
+    private String imageRef;
 
 
+    public String getImageRef() {
+        return imageRef;
+    }
 
-    public Status(String complaintNo,String date, String department, String mobile, String name,
-                        String place, String problem, String subject, String status,
-                            HashMap<String,StatusDetail> updates,String userId,String imageUri) {
+    public void setImageRef(String imageRef) {
+        this.imageRef = imageRef;
+    }
+
+    public Status(String complaintNo, String date, String department, String mobile, String name,
+                  String place, String problem, String subject, String status,
+                  HashMap<String,StatusDetail> updates, String userId, String imageUri,String imageRef) {
         this.complaintNo = complaintNo;
         this.date = date;
         this.department = department;
@@ -59,7 +68,7 @@ public class Status implements Serializable{
         this.updates = updates;
         this.userId = userId;
         this.imageUri = imageUri;
-
+        this.imageRef = imageRef;
     }
 
     public String getComplaintNo() {

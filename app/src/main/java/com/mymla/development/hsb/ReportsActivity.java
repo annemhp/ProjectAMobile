@@ -241,7 +241,7 @@ public class ReportsActivity extends AppCompatActivity {
                         return;
                     } else {
 
-                        final ReportProblem newIssue = new ReportProblem(mUsernameId, name, mobile, place, department, subject, problem, date, status, imageRef);
+                        final ReportProblem newIssue = new ReportProblem(mUsernameId, name, mobile, place, department, subject, problem, date, status, imageRef,downloadUrl!=null ?downloadUrl.toString():null);
 
 
                         final CustomAlertDialog dialog = new CustomAlertDialog(v.getContext());
@@ -384,7 +384,7 @@ public class ReportsActivity extends AppCompatActivity {
         );
 
         if (a != 200) {
-            Log.e("New Issue Report", "Some Problem");
+            Log.e("New Issue Report", "Some Problem"+a);
         }
 
     }
@@ -557,6 +557,8 @@ public class ReportsActivity extends AppCompatActivity {
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
                 downloadUrl = taskSnapshot.getDownloadUrl();
+
+
                 imageName.setVisibility(View.GONE);
                 buttonAttachmentImage.setVisibility(View.VISIBLE);
                 buttonSubmit.setVisibility(View.VISIBLE);

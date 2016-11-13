@@ -39,10 +39,21 @@ public class ReportProblem {
     private String date;
     @SerializedName("status")
     private String status;
-    @SerializedName("imageUri")
+    @SerializedName("imageRef")
     private String imageRef;
 
-    public ReportProblem(String userId, String name, String mobile, String place, String department, String subject, String problem, String date, String status,String imageRef) {
+    public String getImageUri() {
+        return imageUri;
+    }
+
+    public void setImageUri(String imageUri) {
+        this.imageUri = imageUri;
+    }
+
+    @SerializedName("imageUri")
+    private String imageUri;
+
+    public ReportProblem(String userId, String name, String mobile, String place, String department, String subject, String problem, String date, String status,String imageRef,String imageUri) {
         this.userId = userId;
         this.name = name;
         this.mobile = mobile;
@@ -53,6 +64,7 @@ public class ReportProblem {
         this.date = date;
         this.status = status;
         this.imageRef = imageRef;
+        this.imageUri = imageUri;
     }
 
     public String getUserId() {

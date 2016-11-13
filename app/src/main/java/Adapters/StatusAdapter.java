@@ -118,7 +118,7 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.StatusView
 
 
             i.putExtra("Name", currentIssue.name);
-            i.putExtra("ImageRef", currentIssue.getImageUri() != null ? currentIssue.getImageUri() : "");
+            i.putExtra("ImageRef", currentIssue.getImageRef() != null ? currentIssue.getImageRef() : "");
             i.putExtra("Problem", currentIssue.getProblem());
             i.putParcelableArrayListExtra("Updates", statusDetail);
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
