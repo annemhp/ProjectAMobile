@@ -92,7 +92,7 @@ public class StatusDetailActivity extends AppCompatActivity {
 
     private void getImageFromUrl() {
         storage = FirebaseStorage.getInstance();
-        storageRef = storage.getReferenceFromUrl("gs://projectabeta-3e48d.appspot.com");
+        storageRef = storage.getReferenceFromUrl("gs://vskmymla.appspot.com");
         StorageReference previewImg = storageRef.child(imageRef);
         previewImg.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override

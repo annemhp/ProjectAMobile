@@ -123,7 +123,7 @@ public class ReportsActivity extends AppCompatActivity {
         llReports = (LinearLayout) findViewById(R.id.ll_report);
 
         // Create a storage reference from our app
-        storageRef = storage.getReferenceFromUrl("gs://projectabeta-3e48d.appspot.com");
+        storageRef = storage.getReferenceFromUrl("gs://vskmymla.appspot.com");
 
 
         // Create a child reference

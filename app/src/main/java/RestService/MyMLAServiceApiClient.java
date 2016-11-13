@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MyMLAServiceApiClient {
 
 
-    public static final String BASE_URL = "https://projectabeta-3e48d.firebaseio.com/";
+    public static final String BASE_URL = "https://vskmymla.firebaseio.com/";
     private static Retrofit retrofit = null;
 
 

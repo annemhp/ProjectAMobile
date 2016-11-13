@@ -1,21 +1,29 @@
 {
   "project_info": {
-    "project_number": "306327613180",
-    "firebase_url": "https://projectabeta-3e48d.firebaseio.com",
-    "project_id": "projectabeta-3e48d",
-    "storage_bucket": "projectabeta-3e48d.appspot.com"
+    "project_number": "259493659420",
+    "firebase_url": "https://vskmymla.firebaseio.com",
+    "project_id": "vskmymla",
+    "storage_bucket": "vskmymla.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:306327613180:android:3f09e4742a1650af",
+        "mobilesdk_app_id": "1:259493659420:android:3f09e4742a1650af",
         "android_client_info": {
           "package_name": "com.mymla.development.hsb"
         }
       },
       "oauth_client": [
         {
-          "client_id": "306327613180-er4nct7gb6iuo6ev8j5pel1o8u6npro7.apps.googleusercontent.com",
+          "client_id": "259493659420-jr7vojhpfelre8ln1fjf0g97so2ogbcb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mymla.development.hsb",
+            "certificate_hash": "BCE9A024A92D40CDDA4B608C01AD451065650135"
+          }
+        },
+        {
+          "client_id": "259493659420-ulhamfv0lgmvtdgd40nq8648tiq6dv2u.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.mymla.development.hsb",
@@ -23,13 +31,13 @@
           }
         },
         {
-          "client_id": "306327613180-7i4hr60p0cj02nqh4sv9bq0lhujrvq18.apps.googleusercontent.com",
+          "client_id": "259493659420-teivo1cv52mjpshqpguku9ja7sgats1t.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDDo1ZiPkQ0COZtc6-J5ZQ0uJP2yha0kgM"
+          "current_key": "AIzaSyD5JI2gFidnwwnw25mdHDxNyi7sapGwJ5g"
         }
       ],
       "services": {
@@ -40,7 +48,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "306327613180-7i4hr60p0cj02nqh4sv9bq0lhujrvq18.apps.googleusercontent.com",
+              "client_id": "259493659420-teivo1cv52mjpshqpguku9ja7sgats1t.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
